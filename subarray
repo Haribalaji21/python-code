@@ -1,0 +1,16 @@
+def find_subarray(prices, target):
+    n = len(prices)
+    left = 0
+    current_sum = 0
+    for right in range(n):
+        current_sum += prices[right]
+        while current_sum > target and left <= right:
+            current_sum -= prices[left]
+            left += 1
+        if current_sum == target:
+            return [left + 1, right + 1]
+    return [-1]
+prices = [1, 2, 3, 4, 5]
+target = 9
+result = find_subarray(prices,target)
+print(result)
